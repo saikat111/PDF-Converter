@@ -17,28 +17,13 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         AdsUtility.loadInterstitialAd(this);
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (AdsUtility.mInterstitialAd.isLoaded()){
-                    AdsUtility.mInterstitialAd.show();
-                    AdsUtility.mInterstitialAd.setAdListener(new AdListener(){
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                            finish();
-                        }
-                    });
-                } else {
                     startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                     finish();
 
-                }
             }
         }, 3000);
 

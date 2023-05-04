@@ -2,6 +2,7 @@ package com.quantunsoft.pdfcreator.activities;
 
 import static com.quantunsoft.pdfcreator.Constants.ADD_WATERMARK;
 import static com.quantunsoft.pdfcreator.Constants.BUNDLE_DATA;
+import static com.quantunsoft.pdfcreator.util.AdsUtility.mInterstitialAd;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.quantunsoft.pdfcreator.fragment.ExceltoPdfFragment;
 import com.quantunsoft.pdfcreator.fragment.HistoryFragment;
 import com.quantunsoft.pdfcreator.fragment.ImageToPdfFragment;
@@ -19,6 +23,7 @@ import com.quantunsoft.pdfcreator.fragment.QrBarcodeScanFragment;
 import com.quantunsoft.pdfcreator.fragment.SettingsFragment;
 import com.quantunsoft.pdfcreator.fragment.ViewFilesFragment;
 import com.quantunsoft.pdfcreator.fragment.texttopdf.TextToPdfFragment;
+import com.quantunsoft.pdfcreator.util.AdsUtility;
 
 import androidmarket.R;
 
@@ -30,11 +35,12 @@ public class SecondActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_second);
-
-
         Intent intent = getIntent();
         String fragment = intent.getStringExtra("fragment");
 
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
 
         if (fragment.equals("imgToPdf")) {
             ImageToPdfFragment recentFragment = new ImageToPdfFragment();

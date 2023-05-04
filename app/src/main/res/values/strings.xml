@@ -3,9 +3,9 @@
     <string name="title">PDF Actions</string>
 
     <string name="app_id_admob" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="banner_id_admob" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstial_id_admob" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="native_id_admob" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="banner_id_admob" translatable="false">banner_id_admob</string>
+    <string name="interstial_id_admob" translatable="false">banner_id_admob</string>
+    <string name="native_id_admob" translatable="false">banner_id_admob</string>
 
     <string name="file_name_text">File Name</string>
     <string name="password_protect_pdf_text">Password Protect PDF</string>
