@@ -172,8 +172,8 @@ public class ImageToPdfFragment extends Fragment implements OnItemClickListener,
 
 
         FrameLayout nativeAdFrameOne = root.findViewById(R.id.nativeAdFrameLayout);
-        AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);
-
+  /*      AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);
+*/
 
 
         // Check for the images received

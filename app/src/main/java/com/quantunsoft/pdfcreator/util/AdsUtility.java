@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
+/*
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -23,12 +23,12 @@ import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.formats.MediaView;
 import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
-import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.google.android.gms.ads.formats.UnifiedNativeAdView;*/
 
 import androidmarket.R;
 
 public class AdsUtility {
-
+/*
     public static InterstitialAd mInterstitialAd;
     public static UnifiedNativeAd nativeAd;
 
@@ -184,9 +184,9 @@ public class AdsUtility {
             }
         }).build();
 
-        adLoader.loadAd(new AdRequest.Builder().build());
+        adLoader.loadAd(new AdRequest.Builder().build());*/
 
-    }
+   // }
 
 
 

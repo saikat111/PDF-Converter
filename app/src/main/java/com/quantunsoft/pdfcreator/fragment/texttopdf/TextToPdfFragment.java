@@ -97,7 +97,7 @@ public class TextToPdfFragment extends Fragment implements OnItemClickListener,
 
 
         FrameLayout nativeAdFrameOne = rootView.findViewById(R.id.nativeAdFrameLayout);
-        AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);
+      /*  AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);*/
 
 
 

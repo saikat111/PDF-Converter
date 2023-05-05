@@ -93,7 +93,7 @@ public class QrBarcodeScanFragment extends Fragment implements View.OnClickListe
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
 
         FrameLayout nativeAdFrameOne = rootview.findViewById(R.id.nativeAdFrameLayout);
-        AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);
+       /* AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);*/
 
 
         ButterKnife.bind(this, rootview);

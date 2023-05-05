@@ -120,7 +120,7 @@ public class ViewFilesFragment extends Fragment
 
 
         FrameLayout nativeAdFrameOne = root.findViewById(R.id.nativeAdFrameLayout);
-        AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);
+    /*    AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);*/
 
 
         TextView title, titleTwo;

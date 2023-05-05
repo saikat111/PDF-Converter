@@ -86,7 +86,7 @@ public class HistoryFragment extends Fragment implements AdapterHistory.OnClickL
         getRuntimePermissions();
 
         FrameLayout nativeAdFrameOne = root.findViewById(R.id.nativeAdFrameLayout);
-        AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);
+/*        AdsUtility.loadNativeAd(getActivity(), nativeAdFrameOne);*/
 
 
         ImageView ivBack = root.findViewById(R.id.ivBack);

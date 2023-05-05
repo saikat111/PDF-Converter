@@ -1,19 +1,25 @@
 package com.quantunsoft.pdfcreator.activities;
 
-import static com.quantunsoft.pdfcreator.util.AdsUtility.mInterstitialAd;
+/*import static com.quantunsoft.pdfcreator.util.AdsUtility.mInterstitialAd;*/
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.quantunsoft.pdfcreator.util.AdsUtility;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.MobileAds;
@@ -28,6 +34,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     CardView cardImageToPDF, cardTextToPDF, cardQrToPDF,
             cardExcelToPDF, cardAddWatermark, cardHistory,
             cardViewFiles, cardSettings;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +44,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
 
         setViews();
-
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
         });
 
 
-        AdsUtility.loadInterstitialAd(this);
-        FrameLayout nativeAdFrameOne = findViewById(R.id.nativeAdFrameLayout);
-        FrameLayout nativeAdFrameBack = findViewById(R.id.nativeAdFrameLayoutBack);
-        AdsUtility.loadNativeAd(this, nativeAdFrameOne);
-        AdsUtility.loadNativeAd(this, nativeAdFrameBack);
+
+/*        FrameLayout nativeAdFrameOne = findViewById(R.id.nativeAdFrameLayout);
+        FrameLayout nativeAdFrameBack = findViewById(R.id.nativeAdFrameLayoutBack);*/
+    /*    AdsUtility.loadNativeAd(this, nativeAdFrameOne);
+        AdsUtility.loadNativeAd(this, nativeAdFrameBack);*/
 
     }
 
@@ -78,161 +83,233 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.cardImageToPdf:
 
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            AdsUtility.loadInterstitialAd(HomeActivity.this);
-                            Intent intent = new Intent(HomeActivity.this, SecondActivity.class);
-                            intent.putExtra("fragment", "imgToPdf");
-                            startActivity(intent);
-                        }
-                    });
-                } else {
-                    AdsUtility.loadInterstitialAd(HomeActivity.this);
-                    Intent intent = new Intent(HomeActivity.this, SecondActivity.class);
-                    intent.putExtra("fragment", "imgToPdf");
-                    startActivity(intent);
-                }
+                AdRequest adRequest = new AdRequest.Builder().build();
+                InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i("TAG", "onAdLoaded");
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(HomeActivity.this);
+                                } else {
+                                    Log.d("me", "The interstitial ad wasn't ready yet.");
+                                }
+                            }
 
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.d("TAG", loadAdError.toString());
+                                mInterstitialAd = null;
+                            }
+                        });
 
+                Intent intent = new Intent(HomeActivity.this, SecondActivity.class);
+                intent.putExtra("fragment", "imgToPdf");
+                startActivity(intent);
                 break;
             case R.id.cardTextToPdf:
 
+                AdRequest adRequest2 = new AdRequest.Builder().build();
+                InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest2,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i("TAG", "onAdLoaded");
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(HomeActivity.this);
+                                } else {
+                                    Log.d("me", "The interstitial ad wasn't ready yet.");
+                                }
+                            }
 
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            AdsUtility.loadInterstitialAd(HomeActivity.this);
-                            Intent intent2 = new Intent(HomeActivity.this, SecondActivity.class);
-                            intent2.putExtra("fragment", "textToPdf");
-                            startActivity(intent2);
-                        }
-                    });
-                } else {
-                    AdsUtility.loadInterstitialAd(HomeActivity.this);
-                    Intent intent2 = new Intent(HomeActivity.this, SecondActivity.class);
-                    intent2.putExtra("fragment", "textToPdf");
-                    startActivity(intent2);
-                }
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.d("TAG", loadAdError.toString());
+                                mInterstitialAd = null;
+                            }
+                        });
+                Intent intent2 = new Intent(HomeActivity.this, SecondActivity.class);
+                intent2.putExtra("fragment", "textToPdf");
+                startActivity(intent2);
 
                 break;
             case R.id.cardQrToPdf:
+                AdRequest adRequest3 = new AdRequest.Builder().build();
+                InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest3,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i("TAG", "onAdLoaded");
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(HomeActivity.this);
+                                } else {
+                                    Log.d("me", "The interstitial ad wasn't ready yet.");
+                                }
+                            }
 
-
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            AdsUtility.loadInterstitialAd(HomeActivity.this);
-
-                            Intent intent3 = new Intent(HomeActivity.this, SecondActivity.class);
-                            intent3.putExtra("fragment", "qrToPdf");
-                            startActivity(intent3);
-                        }
-                    });
-                } else {
-                    AdsUtility.loadInterstitialAd(HomeActivity.this);
-
-                    Intent intent3 = new Intent(HomeActivity.this, SecondActivity.class);
-                    intent3.putExtra("fragment", "qrToPdf");
-                    startActivity(intent3);
-                }
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.d("TAG", loadAdError.toString());
+                                mInterstitialAd = null;
+                            }
+                        });
+                Intent intent3 = new Intent(HomeActivity.this, SecondActivity.class);
+                intent3.putExtra("fragment", "qrToPdf");
+                startActivity(intent3);
 
                 break;
             case R.id.cardExcelToPdf:
+                AdRequest adRequest4 = new AdRequest.Builder().build();
+                InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest4,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i("TAG", "onAdLoaded");
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(HomeActivity.this);
+                                } else {
+                                    Log.d("me", "The interstitial ad wasn't ready yet.");
+                                }
+                            }
 
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            AdsUtility.loadInterstitialAd(HomeActivity.this);
-                            Intent intent4 = new Intent(HomeActivity.this, SecondActivity.class);
-                            intent4.putExtra("fragment", "excelToPdf");
-                            startActivity(intent4);
-                        }
-                    });
-                } else {
-                    AdsUtility.loadInterstitialAd(HomeActivity.this);
-                    Intent intent4 = new Intent(HomeActivity.this, SecondActivity.class);
-                    intent4.putExtra("fragment", "excelToPdf");
-                    startActivity(intent4);
-                }
-
-
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.d("TAG", loadAdError.toString());
+                                mInterstitialAd = null;
+                            }
+                        });
+                Intent intent4 = new Intent(HomeActivity.this, SecondActivity.class);
+                intent4.putExtra("fragment", "excelToPdf");
+                startActivity(intent4);
                 break;
             case R.id.cardAddWatermark:
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            AdsUtility.loadInterstitialAd(HomeActivity.this);
-                            Intent intent5 = new Intent(HomeActivity.this, SecondActivity.class);
-                            intent5.putExtra("fragment", "watermark");
-                            startActivity(intent5);
+                AdRequest adRequest5 = new AdRequest.Builder().build();
+                InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest5,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i("TAG", "onAdLoaded");
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(HomeActivity.this);
+                                } else {
+                                    Log.d("me", "The interstitial ad wasn't ready yet.");
+                                }
+                            }
 
-                        }
-                    });
-                } else {
-                    AdsUtility.loadInterstitialAd(HomeActivity.this);
-                    Intent intent5 = new Intent(HomeActivity.this, SecondActivity.class);
-                    intent5.putExtra("fragment", "watermark");
-                    startActivity(intent5);
-
-                }
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.d("TAG", loadAdError.toString());
+                                mInterstitialAd = null;
+                            }
+                        });
+                Intent intent5 = new Intent(HomeActivity.this, SecondActivity.class);
+                intent5.putExtra("fragment", "watermark");
+                startActivity(intent5);
 
 
                 break;
             case R.id.cardHistory:
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            AdsUtility.loadInterstitialAd(HomeActivity.this);
-                            Intent intent6 = new Intent(HomeActivity.this, SecondActivity.class);
-                            intent6.putExtra("fragment", "history");
-                            startActivity(intent6);
-                        }
-                    });
-                } else {
-                    AdsUtility.loadInterstitialAd(HomeActivity.this);
-                    Intent intent6 = new Intent(HomeActivity.this, SecondActivity.class);
-                    intent6.putExtra("fragment", "history");
-                    startActivity(intent6);
-                }
+                AdRequest adRequest6 = new AdRequest.Builder().build();
+                InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest6,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i("TAG", "onAdLoaded");
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(HomeActivity.this);
+                                } else {
+                                    Log.d("me", "The interstitial ad wasn't ready yet.");
+                                }
+                            }
 
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.d("TAG", loadAdError.toString());
+                                mInterstitialAd = null;
+                            }
+                        });
+                Intent intent6 = new Intent(HomeActivity.this, SecondActivity.class);
+                intent6.putExtra("fragment", "history");
+                startActivity(intent6);
 
                 break;
             case R.id.cardViewFiles:
+                AdRequest adRequest7 = new AdRequest.Builder().build();
+                InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest7,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i("TAG", "onAdLoaded");
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(HomeActivity.this);
+                                } else {
+                                    Log.d("me", "The interstitial ad wasn't ready yet.");
+                                }
+                            }
 
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            AdsUtility.loadInterstitialAd(HomeActivity.this);
-                            Intent intent7 = new Intent(HomeActivity.this, SecondActivity.class);
-                            intent7.putExtra("fragment", "view");
-                            startActivity(intent7);
-                        }
-                    });
-                } else {
-                    AdsUtility.loadInterstitialAd(HomeActivity.this);
-                    Intent intent7 = new Intent(HomeActivity.this, SecondActivity.class);
-                    intent7.putExtra("fragment", "view");
-                    startActivity(intent7);
-                }
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.d("TAG", loadAdError.toString());
+                                mInterstitialAd = null;
+                            }
+                        });
 
-
+                Intent intent7 = new Intent(HomeActivity.this, SecondActivity.class);
+                intent7.putExtra("fragment", "view");
+                startActivity(intent7);
                 break;
             case R.id.cardSettings:
+                AdRequest adRequest8 = new AdRequest.Builder().build();
+                InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest8,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i("TAG", "onAdLoaded");
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(HomeActivity.this);
+                                } else {
+                                    Log.d("me", "The interstitial ad wasn't ready yet.");
+                                }
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.d("TAG", loadAdError.toString());
+                                mInterstitialAd = null;
+                            }
+                        });
                 Intent intent8 = new Intent(HomeActivity.this, SecondActivity.class);
                 intent8.putExtra("fragment", "settings");
                 startActivity(intent8);
@@ -248,45 +325,44 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     boolean doubleBackToExitPressedOnce = false;
 
     public void ShowBackStuff() {
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    if (doubleBackToExitPressedOnce) {
-                        finish();
-                        return;
+        AdRequest adRequest2 = new AdRequest.Builder().build();
+        InterstitialAd.load(this,getResources().getString(R.string.interstial_id_admob), adRequest2,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        Log.i("TAG", "onAdLoaded");
+                        if (mInterstitialAd != null) {
+                            mInterstitialAd.show(HomeActivity.this);
+                        } else {
+                            Log.d("me", "The interstitial ad wasn't ready yet.");
+                        }
                     }
 
-                    doubleBackToExitPressedOnce = true;
-                    RelativeLayout exitLayout = findViewById(R.id.exitLayout);
-                    exitLayout.setVisibility(View.VISIBLE);
-                    new Handler().postDelayed(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            doubleBackToExitPressedOnce = false;
-                        }
-                    }, 2000);
-                }
-            });
-        } else {
-            if (doubleBackToExitPressedOnce) {
-                finish();
-                return;
-            }
-
-            doubleBackToExitPressedOnce = true;
-            RelativeLayout exitLayout = findViewById(R.id.exitLayout);
-            exitLayout.setVisibility(View.VISIBLE);
-            new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    doubleBackToExitPressedOnce = false;
-                }
-            }, 2000);
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.d("TAG", loadAdError.toString());
+                        mInterstitialAd = null;
+                    }
+                });
+        if (doubleBackToExitPressedOnce) {
+            finish();
+            return;
         }
+
+        doubleBackToExitPressedOnce = true;
+        RelativeLayout exitLayout = findViewById(R.id.exitLayout);
+        exitLayout.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
 

@@ -9,8 +9,8 @@ android {
         minSdkVersion 23
         multiDexEnabled true
         targetSdkVersion 33
-        versionCode 9
-        versionName "9.0.1"
+        versionCode 10
+        versionName "10.0.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
@@ -121,7 +121,7 @@ dependencies {
     implementation 'com.github.danielnilsson9:color-picker-view:1.4.0@aar'
 
     //admob
-    implementation 'com.google.android.gms:play-services-ads:19.8.0'
+    implementation 'com.google.android.gms:play-services-ads:22.0.0'
 
     implementation 'androidx.work:work-runtime-ktx:2.7.0'
 

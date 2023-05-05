@@ -4,7 +4,7 @@
 
     <string name="app_id_admob" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="banner_id_admob" translatable="false">banner_id_admob</string>
-    <string name="interstial_id_admob" translatable="false">banner_id_admob</string>
+    <string name="interstial_id_admob" translatable="false">test</string>
     <string name="native_id_admob" translatable="false">banner_id_admob</string>
 
     <string name="file_name_text">File Name</string>
