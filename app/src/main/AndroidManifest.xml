@@ -69,12 +69,9 @@
             android:screenOrientation="portrait">
 
         </activity>
-
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/app_id_admob" />
-
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
         <activity
             android:name="com.quantunsoft.pdfcreator.activities.SecondActivity"
             android:screenOrientation="portrait" />
