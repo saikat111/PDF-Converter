@@ -2,9 +2,9 @@
     <string name="app_name">Max PDF Converter</string>
     <string name="title">PDF Actions</string>
 
-    <string name="app_id_admob" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="banner_id_admob" translatable="false">banner_id_admob</string>
-    <string name="interstial_id_admob" translatable="false">test</string>
+    <string name="app_id_admob" translatable="false">ca-app-pub-9548309190743465~5520566516</string>
+    <string name="banner_id_admob" translatable="false">ca-app-pub-9548309190743465/6067834186</string>
+    <string name="interstial_id_admob" translatable="false">ca-app-pub-9548309190743465/3338617116</string>
     <string name="native_id_admob" translatable="false">banner_id_admob</string>
 
     <string name="file_name_text">File Name</string>

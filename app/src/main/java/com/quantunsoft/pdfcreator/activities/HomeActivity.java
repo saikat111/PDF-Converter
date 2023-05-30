@@ -15,6 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import androidmarket.R;
 
@@ -24,6 +33,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     CardView cardImageToPDF, cardTextToPDF, cardQrToPDF,
             cardExcelToPDF, cardAddWatermark, cardHistory,
             cardViewFiles, cardSettings;
+    private InterstitialAd mInterstitialAd;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +43,41 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home);
 
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this,getString(R.string.interstial_id_admob), adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        Log.i("TAG", "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.d("TAG", loadAdError.toString());
+                        mInterstitialAd = null;
+                    }
+                });
+        AdView adView = new AdView(this);
+
+        adView.setAdSize(AdSize.BANNER);
+
+        adView.setAdUnitId(getString(R.string.banner_id_admob));
+        mAdView = findViewById(R.id.b1);
+        AdRequest adRequest2 = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest2);
         setViews();
-
-
     }
+
 
     private void setViews() {
         cardImageToPDF = findViewById(R.id.cardImageToPdf);
@@ -61,7 +103,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cardImageToPdf:
-
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(HomeActivity.this);
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
 
                 Intent intent = new Intent(HomeActivity.this, SecondActivity.class);
                 intent.putExtra("fragment", "imgToPdf");
@@ -69,27 +115,43 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.cardTextToPdf:
 
-
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(HomeActivity.this);
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
                 Intent intent2 = new Intent(HomeActivity.this, SecondActivity.class);
                 intent2.putExtra("fragment", "textToPdf");
                 startActivity(intent2);
 
                 break;
             case R.id.cardQrToPdf:
-
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(HomeActivity.this);
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
                 Intent intent3 = new Intent(HomeActivity.this, SecondActivity.class);
                 intent3.putExtra("fragment", "qrToPdf");
                 startActivity(intent3);
 
                 break;
             case R.id.cardExcelToPdf:
-
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(HomeActivity.this);
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
                 Intent intent4 = new Intent(HomeActivity.this, SecondActivity.class);
                 intent4.putExtra("fragment", "excelToPdf");
                 startActivity(intent4);
                 break;
             case R.id.cardAddWatermark:
-
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(HomeActivity.this);
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
                 Intent intent5 = new Intent(HomeActivity.this, SecondActivity.class);
                 intent5.putExtra("fragment", "watermark");
                 startActivity(intent5);
@@ -97,7 +159,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.cardHistory:
-
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(HomeActivity.this);
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
                 Intent intent6 = new Intent(HomeActivity.this, SecondActivity.class);
                 intent6.putExtra("fragment", "history");
                 startActivity(intent6);
@@ -105,13 +171,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.cardViewFiles:
 
-
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(HomeActivity.this);
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
                 Intent intent7 = new Intent(HomeActivity.this, SecondActivity.class);
                 intent7.putExtra("fragment", "view");
                 startActivity(intent7);
                 break;
             case R.id.cardSettings:
-
+                if (mInterstitialAd != null) {
+                    mInterstitialAd.show(HomeActivity.this);
+                } else {
+                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+                }
                 Intent intent8 = new Intent(HomeActivity.this, SecondActivity.class);
                 intent8.putExtra("fragment", "settings");
                 startActivity(intent8);
