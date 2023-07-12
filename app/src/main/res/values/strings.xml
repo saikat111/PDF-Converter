@@ -2,10 +2,10 @@
     <string name="app_name">Max PDF Converter</string>
     <string name="title">PDF Actions</string>
 
-    <string name="app_id_admob" translatable="false">ca-app-pub-9548309190743465~5520566516</string>
-    <string name="banner_id_admob" translatable="false">ca-app-pub-9548309190743465/6067834186</string>
-    <string name="interstial_id_admob" translatable="false">ca-app-pub-9548309190743465/3338617116</string>
-    <string name="native_id_admob" translatable="false">banner_id_admob</string>
+    <string name="app_id_admob" translatable="false">ca-app-pub-9312766620009008~7369771558</string>
+    <string name="banner_id_admob" translatable="false">ca-app-pub-9312766620009008/6332494813</string>
+    <string name="interstial_id_admob" translatable="false">ca-app-pub-9312766620009008/1056117409</string>
+    <string name="native_id_admob" translatable="false">ca-app-pub-9312766620009008/1335319006</string>
 
     <string name="file_name_text">File Name</string>
     <string name="password_protect_pdf_text">Password Protect PDF</string>

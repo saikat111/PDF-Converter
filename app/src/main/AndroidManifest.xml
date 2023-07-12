@@ -71,7 +71,7 @@
         </activity>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9548309190743465~5520566516"/>
+            android:value="ca-app-pub-9312766620009008~7369771558"/>
         <activity
             android:name="com.quantunsoft.pdfcreator.activities.SecondActivity"
             android:screenOrientation="portrait" />
